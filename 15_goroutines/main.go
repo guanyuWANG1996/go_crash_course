@@ -2,31 +2,28 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"sync"
 )
 
+var wg sync.WaitGroup
+
 func f(from string) {
+	defer wg.Done()
 	for i := 0; i < 3; i++ {
 		fmt.Println(from, ":", i)
-		time.Sleep(1 * time.Second)
 	}
 }
 
-func main() {
-	f("Gin")
-
+func main() { //开启主goroutine去执行main函数
+	wg.Add(2)
 	go f("goroutine")
-
 	//go f("Starting")
 	go func(msg string) {
 		for i := 0; i < 3; i++ {
 			fmt.Println(msg)
-			time.Sleep(1 * time.Second)
 		}
+		wg.Done()
 	}("starting")
-
-	// Keep our main Goroutine running
-	var input string
-	fmt.Scanln(&input)
-	fmt.Println("done")
+	fmt.Println("Main function")
+	wg.Wait()
 }
