@@ -11,12 +11,12 @@ func main() {
 	//fruitArr[1] = "Orange"
 
 	//Declare and assign
-	//fruitArr := [2]string{"Apple", "Orange"}
-
+	fruitArr := [2]string{"Apple", "Orange"}
+	fmt.Printf("%T\n", fruitArr)
 	//Slice
 	fruitSlice := []string{"Apple", "Orange", "Grape"}
-
-
-	fmt.Println(len(fruitSlice))
-	fmt.Println(fruitSlice[1:3])
+	newSlice := fruitSlice[1:]
+	//fmt.Printf("%T\n", fruitSlice)
+	fmt.Printf("%T\n", newSlice)
+	fmt.Println(newSlice[0])
 }

@@ -15,4 +15,12 @@ func main() {
 
 	fmt.Println(name, age, isCool, size, email)
 	fmt.Printf("%T\n", name)
+	//iota
+	const (
+		n1 = iota //0
+		n2 //1
+		_ //忽略
+		n3 //3
+	)
+	fmt.Println(n1, n2, n3)
 }
